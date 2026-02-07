@@ -3,6 +3,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 
 const MusicPlayer = () => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
     const audioRef = useRef(null);
 
     // Using your HASEEN song!
@@ -10,19 +11,42 @@ const MusicPlayer = () => {
 
     useEffect(() => {
         if (audioRef.current) {
-            audioRef.current.volume = 0.3; // Set volume to 30%
-            audioRef.current.loop = true; // Loop the music
+            audioRef.current.volume = 0.3;
+            audioRef.current.loop = true;
         }
-    }, []);
 
-    const toggleMusic = () => {
+        // Auto-play on first user interaction (required by browsers)
+        const playOnInteraction = () => {
+            if (audioRef.current && !hasInteracted) {
+                audioRef.current.play().then(() => {
+                    setIsPlaying(true);
+                    setHasInteracted(true);
+                }).catch((e) => {
+                    console.log('Autoplay prevented:', e);
+                });
+            }
+        };
+
+        // Listen for any user interaction
+        document.addEventListener('click', playOnInteraction, { once: true });
+        document.addEventListener('touchstart', playOnInteraction, { once: true });
+
+        return () => {
+            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('touchstart', playOnInteraction);
+        };
+    }, [hasInteracted]);
+
+    const toggleMusic = (e) => {
+        e.stopPropagation();
         if (audioRef.current) {
             if (isPlaying) {
                 audioRef.current.pause();
+                setIsPlaying(false);
             } else {
                 audioRef.current.play();
+                setIsPlaying(true);
             }
-            setIsPlaying(!isPlaying);
         }
     };
 
@@ -50,9 +74,9 @@ const MusicPlayer = () => {
                     zIndex: 10000,
                     transition: 'all 0.3s ease',
                 }}
-                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                title={isPlaying ? 'Pause Music' : 'Play Music'}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                title={isPlaying ? 'Mute Music' : 'Play Music'}
             >
                 {isPlaying ? (
                     <Volume2 color="white" size={28} />
@@ -60,24 +84,6 @@ const MusicPlayer = () => {
                     <VolumeX color="white" size={28} />
                 )}
             </button>
-            {!isPlaying && (
-                <p
-                    style={{
-                        position: 'fixed',
-                        bottom: '90px',
-                        right: '10px',
-                        background: 'rgba(255,255,255,0.9)',
-                        padding: '8px 16px',
-                        borderRadius: '20px',
-                        fontSize: '0.85rem',
-                        color: '#666',
-                        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                        zIndex: 10000,
-                    }}
-                >
-                    🎵 Click for music!
-                </p>
-            )}
         </>
     );
 };
