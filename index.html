@@ -1,13 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>valentine-puzzle</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <title>Creator Onboarding — Join the Future</title>
+    <meta name="description"
+        content="Join our upcoming Brand to Creator platform. Sign up as a creator and be the first to know when we launch." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="terms.css" />
+</head>
+
+<body>
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- Floating gradient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Early Access — Limited Spots
+            </div>
+
+            <div class="platform-name-wrapper">
+                <h1 class="platform-name blurred" aria-label="Platform name hidden">
+                    NEXUS<span class="accent">LINK</span>
+                </h1>
+                <div class="blur-label">Name Reveal Coming Soon</div>
+            </div>
+
+            <h2 class="headline">
+                The Future of <span class="gradient-text">Brand × Creator</span> Collaboration
+            </h2>
+            <p class="subheadline">
+                We're building something revolutionary. A platform that connects brands with creators in ways never done
+                before. Be among the first creators to join.
+            </p>
+        </header>
+
+        <!-- Onboarding Form -->
+        <section class="form-section">
+            <div class="form-card">
+                <div class="form-header">
+                    <h3>Join as a Creator</h3>
+                    <p>Fill in your details to reserve your spot</p>
+                </div>
+
+                <form id="onboarding-form" novalidate>
+                    <!-- Email Field -->
+                    <div class="field-group" id="email-group">
+                        <label for="email">
+                            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="3" />
+                                <path d="M22 7l-10 7L2 7" />
+                            </svg>
+                            Email Address
+                        </label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required
+                            autocomplete="email" />
+                        <span class="error-msg" id="email-error"></span>
+                    </div>
+
+                    <!-- X Handle Field -->
+                    <div class="field-group" id="x-group">
+                        <label for="x-handle">
+                            <svg class="field-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                            X (Twitter) Handle
+                        </label>
+                        <input type="text" id="x-handle" name="x_handle" placeholder="@yourhandle" required />
+                        <span class="error-msg" id="x-error"></span>
+                    </div>
+
+                    <!-- Telegram Handle Field -->
+                    <div class="field-group" id="telegram-group">
+                        <label for="telegram">
+                            <svg class="field-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                            </svg>
+                            Telegram Username
+                        </label>
+                        <input type="text" id="telegram" name="telegram" placeholder="@yourusername" required />
+                        <span class="error-msg" id="telegram-error"></span>
+                    </div>
+
+                    <!-- Terms Checkbox -->
+                    <div class="terms-checkbox-group" id="terms-group">
+                        <input type="checkbox" id="terms-agree" name="terms" required />
+                        <label for="terms-agree">
+                            I agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> and consent to
+                            the collection and display of my data as described.
+                        </label>
+                    </div>
+                    <span class="error-msg" id="terms-error"></span>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Reserve My Spot</span>
+                        <span class="btn-loader" id="btn-loader">
+                            <svg class="spinner" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none"
+                                    stroke-dasharray="31.4 31.4" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Success State -->
+                <div class="success-state" id="success-state">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                    </div>
+                    <h3>You're In! 🎉</h3>
+                    <p>We've reserved your spot. You'll be among the first to know when we launch.</p>
+                </div>
+            </div>
+
+            <!-- Stats / Social Proof -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number" id="creator-count">241</span>
+                    <span class="stat-label">Creators Joined</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Brands Onboard</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">Soon™</span>
+                    <span class="stat-label">Launch Date</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Teaser -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h4>Get Paid Fairly</h4>
+                <p>Transparent pricing, direct payments, no middlemen eating your earnings.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h4>Smart Matching</h4>
+                <p>AI-powered brand matching based on your niche, audience, and style.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Growth Analytics</h4>
+                <p>Deep insights into your performance across every collaboration.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 : Something Big Is Coming</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
